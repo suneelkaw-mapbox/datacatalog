@@ -9,7 +9,7 @@ same content as `site/agents.txt` for agents. Live internally at https://hey.map
 - `catalog.csv` — the inventory the page is built from, public columns only. One row per dataset or domain; `Catalog type`
   says which rows reach the page (Dataset, Domain) and `Parent ID` nests datasets under domains and layers under datasets.
   The inventory itself is maintained in Mathew Antony's Data Catalog sheet; this file is generated from it.
-- `template.html` — the page chrome and its small script (search, index tracking, the More toggle). Display names, lead
+- `template.html` — the page chrome and its small script (search, index tracking, copy buttons). Display names, lead
   datasets and API doc links live in the `NAMES`, `LEAD` and `API_DOCS` constants at the top of the script.
 - `generate.py` — renders `site/index.html` and `agents.txt` from the template and the CSV.
 - `thumbs_v3.py` and `thumbs.py` — render one map image per entry with the Mapbox Static Images API (light base, one
@@ -26,7 +26,8 @@ To re-render images you need the Mapbox CLI signed in (`mapbox static get-image`
 
 ## Design notes
 
-Each entry is the map image, the name, one sentence, and a plus for more. Behind the plus: how it ships (linked to its API
-reference), docs, licensing where a contract is needed, APIs, format, update cadence, price, uses, source and license terms.
+Each entry is the map image (top-aligned with the text), the name, one sentence, and a call-to-action button: Read the docs,
+and Contact sales where a contract is needed. The details are always shown: how it ships (linked to its API reference),
+licensing, APIs, format, update cadence, price, uses, source and license terms, and any layers inside.
 Domains with a single dataset read as one entry. Everything is in the HTML, so agents and search engines read it without
 running the script.
