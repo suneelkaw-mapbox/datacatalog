@@ -1,5 +1,5 @@
 # Mapbox data catalog
-Generated 2026-11-02. Page: https://hey.mapbox.com/data-catalogV2/. Each dataset has a permalink (https://hey.mapbox.com/data-catalogV2/#<slug>); the page itself is static HTML with the same content.
+Generated 2026-11-03. Page: https://hey.mapbox.com/data-catalogV2/. Each dataset has a permalink (https://hey.mapbox.com/data-catalogV2/#<slug>); the page itself is static HTML with the same content.
 Datasets reach an agent three ways: the hosted runtime MCP server (https://mcp.mapbox.com/mcp) for search, geocoding, routing, matrices, isochrones and map matching;
 the DevKit MCP server (https://mcp-devkit.mapbox.com/mcp) for point lookups into any vector tileset (Tilequery) plus styles and tokens;
 and REST with an access token for tiles, rasters, files and feeds. Datasets marked Contact sales need a contract before a token works (https://www.mapbox.com/contact/sales/).
@@ -115,7 +115,7 @@ Price: PAYGO: Raster Tiles API requests
 License terms: Attribution required; vendor restrictions on reuse
 Model training allowed: No
 Useful for: Imagery basemap, hybrid maps, site inspection
-Source: Maxar (bought); Airbus as alternative
+Source: Maxar; Airbus as alternative
 Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-satellite/
 
 ### Transit stop labels
@@ -611,7 +611,7 @@ APIs and interfaces: Navigation SDK (https://docs.mapbox.com/#navigation)
 Format: Navigation SDK integration
 Data type: Point conditions and alert polygons
 Updated: Live
-Price: Included in Navigation SDK usage; TWC license $300K/yr (LEGL-2388)
+Price: Included in Navigation SDK usage
 Model training allowed: No
 Useful for: Weather in the driver's view; hazard warnings on the route
 Source: Weather.com (TWC) and Japan Meteorological Support Center
