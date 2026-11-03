@@ -22,7 +22,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan). Coverage template sources: OSM; Zenrin (Japan); GeoTech as alternative
@@ -40,7 +40,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
@@ -76,7 +76,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
@@ -94,7 +94,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
@@ -130,7 +130,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
@@ -148,7 +148,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan). Coverage template sources: International Mapping (disputed borders service)
@@ -166,7 +166,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
@@ -184,7 +184,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
@@ -202,7 +202,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan). Coverage template sources: OSM; Remax (US addresses); Lightbox (CA); Loveland (sub-units); ATTOM (US address and neighborhood); AccuZIP (US postal); Loqate fallback and Deyde (SA, EU, ME) for geocoding
@@ -220,7 +220,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
@@ -238,7 +238,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan). Coverage template sources: OSM; Zenrin (Japan); GeoTech as alternative
@@ -256,7 +256,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
@@ -274,7 +274,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
@@ -292,7 +292,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan). Coverage template sources: OSM + Dataplor + TripAdvisor (POIs, open + bought + enriched)
@@ -310,7 +310,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan). Coverage template sources: OSM; Zenrin (Japan); GeoTech as alternative
@@ -328,7 +328,7 @@ Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
 Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
-License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
 Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
