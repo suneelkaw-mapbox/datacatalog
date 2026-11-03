@@ -99,13 +99,13 @@ h3{font-size:clamp(22px,2.2vw,28px);font-weight:700}
 @media (max-width:640px){.chapter .hero-img{aspect-ratio:2/1}}
 
 /* one dataset: image left, words right */
-.ds{display:grid;grid-template-columns:minmax(0,1fr);gap:16px 40px;align-items:center;padding:30px 0;border-bottom:1px solid var(--line);scroll-margin-top:72px}
+.ds{display:grid;grid-template-columns:minmax(0,1fr);gap:16px 40px;align-items:start;padding:30px 0;border-bottom:1px solid var(--line);scroll-margin-top:72px}
 .ds > *{min-width:0}
 @media (min-width:760px){.ds.has-img{grid-template-columns:minmax(0,4fr) minmax(0,7fr)}}
 .ds:target{background:linear-gradient(90deg,var(--accent-soft),transparent 70%);margin:0 -16px;padding-left:16px;padding-right:16px;border-radius:var(--radius)}
 .ds .img{width:90%;aspect-ratio:3/2;max-width:100%;overflow:hidden;border-radius:var(--radius);background:var(--surface-2)}
 .ds .img img{width:100%;height:100%;object-fit:cover;display:block}
-.ds .words{display:grid;gap:12px;align-content:center}
+.ds .words{display:grid;gap:12px;align-content:start}
 .ds h3 a{color:var(--fg)}
 .ds h3 a:hover{color:var(--accent);text-decoration:none}
 .ds .tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:5px;background:var(--warn-soft);color:var(--warn);margin-bottom:2px;justify-self:start}
@@ -116,11 +116,10 @@ h3{font-size:clamp(22px,2.2vw,28px);font-weight:700}
 .ds .three span + span::before{content:"·";margin:0 9px;color:var(--line)}
 .ds .three a{color:var(--muted);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
 .ds .three a:hover{color:var(--accent);text-decoration-color:var(--accent)}
-.ds a.plus{display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-size:14px;white-space:nowrap;vertical-align:baseline;margin-left:4px}
-.ds a.plus .glyph{display:inline-flex;width:20px;height:20px;border:1px solid var(--line);border-radius:50%;align-items:center;justify-content:center;font-size:14px;line-height:1;color:var(--muted)}
-.ds a.plus:hover{color:var(--accent);text-decoration:none}
-.ds a.plus:hover .glyph{border-color:var(--accent);color:var(--accent)}
 .ds .more{margin-top:2px}
+.ds .cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:2px}
+.ds .cta .btn{padding:10px 18px;font-size:14.5px}
+.ds .cta .btn.primary{font-weight:600}
 .kv a{overflow-wrap:anywhere}
 .ds details{font-size:14px}
 .ds details summary{cursor:pointer;color:var(--muted);list-style:none;display:inline-flex;align-items:center;gap:6px;font-size:14.5px}
@@ -296,10 +295,6 @@ footer button{border:0;background:none;color:var(--on-navy);cursor:pointer;paddi
     const keys=Object.keys(EXPORT[0]||{}); const q=s=>{ s=String(s==null?"":s); return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; };
     return [keys.join(","), ...EXPORT.map(r=>keys.map(k=>q(r[k])).join(","))].join("\n");
   }
-  // the title and the plus both open the full details; the URL takes the entry's permalink without jumping
-  $('#content').addEventListener('click',e=>{ const t=e.target.closest('a.toggle'); if(!t) return; e.preventDefault(); const m=document.getElementById(t.dataset.toggle); if(!m) return; m.hidden=!m.hidden;
-    const art=t.closest('article.ds'); art.querySelectorAll('a.plus').forEach(p=>{ p.querySelector('.glyph').textContent=m.hidden?'+':'–'; p.querySelector('.word').textContent=m.hidden?'More':'Less'; });
-    try{ history.replaceState(null,'','#'+art.id); }catch(err){} });
   $('#q').addEventListener('input',e=>{ state.q=e.target.value.trim(); render(); });
   $('#searchForm').addEventListener('submit',e=>{ e.preventDefault(); state.q=$('#q').value.trim(); render(); if(state.q){ const first=ARTS.find(a=>!a.hidden); if(first) first.scrollIntoView({behavior:'smooth',block:'start'}); } });
   $('#copyJson').onclick=()=>copy(JSON.stringify({title:"Mapbox data catalog",generated:"__DATE__",page:pageUrl(),entries:EXPORT.map(r=>Object.assign({"Permalink":pageUrl()+"#"+r.Slug},r))},null,1),"Catalog JSON copied");

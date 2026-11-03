@@ -44,7 +44,7 @@ what = lambda r: re.sub(r"\s*\(\d+ documented fields\)", "", cap(r["What you get
 def tag(r):
     s = r["Status"]
     if s.startswith("Preview"): return ("preview", "Preview")
-    return None   # licensed data says Contact sales inside More, not as a badge (Suneel, 2026-11-02)
+    return None   # licensed data says Contact sales on its button, not as a badge (Suneel, 2026-11-02)
 avail = lambda r: 0 if r["Status"].startswith(("GA", "Commercial")) else 1 if r["Status"].startswith("Preview") else 2 if r["Status"].startswith("Planned") else 3
 
 # ---- the page's rows
@@ -129,26 +129,28 @@ def entry_html(r, title=None, sub_override=None):
     shown_name = title or name(r)
     ff = f'<a href="{e(API_DOCS[api])}" target="_blank" rel="noopener" title="{e(api)} docs">{e(r["Access form factor"])}</a>' if api else e(r["Access form factor"])
     # one line under the sentence: how it ships (linked to its API docs), Docs, Details. Price is the same for nearly everything, so it stays in Details.
-    # the details open with the two things a reader acts on: how it ships (linked to its API docs) and the docs or sales link
-    act = (f'<a href="{e(docs)}" target="_blank" rel="noopener">{e(docs.replace("https://", ""))}</a>' if docs else f'<a href="{SALES}" target="_blank" rel="noopener">Contact sales</a>' if commercial else "")
     apis = ", ".join(f'<a href="{e(u)}" target="_blank" rel="noopener">{e(x)}</a>' if u else e(x) for x, u in link_apis(r["APIs and interfaces"]))
     sales = f'<dt>Licensing</dt><dd><a href="{SALES}" target="_blank" rel="noopener">Contact sales</a> for a contract; a token alone does not unlock this dataset.</dd>' if commercial else ""
-    more = (f"<dt>How it ships</dt><dd>{ff}</dd>" + (f"<dt>Docs</dt><dd>{act}</dd>" if act and docs else "") + sales + (f"<dt>APIs</dt><dd>{apis}</dd>" if apis else "")
+    more = (f"<dt>How it ships</dt><dd>{ff}</dd>" + sales + (f"<dt>APIs</dt><dd>{apis}</dd>" if apis else "")
             + "".join(f"<dt>{e(l)}</dt><dd>{e(r[c])}</dd>" for l, c in MORE if r.get(c, "").strip()))
     levels = ""
     if kids:
         unit = "levels" if r["Product / dataset"] == "Boundaries v4" else "layers"
-        levels = (f'<details><summary>{len(kids)} {unit} inside</summary><ul class="levels">' +
+        levels = (f'<details open><summary>{len(kids)} {unit} inside</summary><ul class="levels">' +
                   "".join(f'<li id="{e(k["Slug"])}"><b>{e(name(k))}</b><a class="lk" href="#{e(k["Slug"])}">link</a><span>{e(what(k))}</span>' + (f'<span><a href="{e(k["Docs link"])}" target="_blank" rel="noopener">Docs</a></span>' if k["Docs link"].strip() else "") + "</li>" for k in kids) + "</ul></details>")
+    # the call to action: the docs when there are any, and Contact sales for anything that needs a contract
+    cta = ((f'<a class="btn primary" href="{e(docs)}" target="_blank" rel="noopener">Read the docs <span aria-hidden="true">→</span></a>' if docs else "")
+           + (f'<a class="btn{"" if docs else " primary"}" href="{SALES}" target="_blank" rel="noopener">Contact sales</a>' if commercial else ""))
     attrs = " ".join(f'data-{k}="{e(r[c] or "(blank)")}"' for k, c in (("status", "Status"), ("ff", "Access form factor"), ("ai", "AI / agent relevance"), ("bulk", "Bulk-queryable as a dataset")))
     return (f'<article class="ds{" has-img" if img else ""}" id="{e(r["Slug"])}" data-id="{e(r["ID"])}" {attrs} data-hay="{e(hay(r))}">'
             + (f'<div class="img"><img src="{e(img)}" alt="Map view of {e(name(r))}" loading="lazy" width="600" height="400"></div>' if img else "")
             + '<div class="words">'
             + (f'<span class="tag {t[0]}">{e(t[1])}</span>' if t else "")
-            + f'<h3><a class="toggle" href="#{e(r["Slug"])}" data-toggle="more-{e(r["ID"])}">{e(shown_name)}</a></h3>'
+            + f'<h3><a href="#{e(r["Slug"])}">{e(shown_name)}</a></h3>'
             + (f'<div class="sub">{e(sub)}</div>' if sub else "")
-            + f'<p class="what">{e(what(r))} <a class="toggle plus" href="#{e(r["Slug"])}" data-toggle="more-{e(r["ID"])}" aria-label="More about {e(shown_name)}"><span class="glyph">+</span><span class="word">More</span></a></p>'
-            + f'<div class="more" id="more-{e(r["ID"])}" hidden><dl class="kv">{more}</dl>{levels}</div>'
+            + f'<p class="what">{e(what(r))}</p>'
+            + (f'<div class="cta">{cta}</div>' if cta else "")
+            + f'<div class="more" id="more-{e(r["ID"])}"><dl class="kv">{more}</dl>{levels}</div>'
             + "</div></article>")
 
 sections, index, dchips = [], [], []
