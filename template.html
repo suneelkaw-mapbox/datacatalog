@@ -136,7 +136,8 @@ h3{font-size:clamp(22px,2.2vw,28px);font-weight:700}
 .levels li:target{border-color:var(--accent);background:var(--accent-soft)}
 .levels b{font-weight:600}
 .levels span{color:var(--muted);display:block}
-.levels a.lk{font-size:12px;color:var(--muted);text-decoration:underline;margin-left:6px}
+.levels a.lk{color:var(--fg)}
+.levels a.lk:hover{color:var(--accent);text-decoration:none}
 
 
 /* agents and request */
@@ -209,7 +210,7 @@ footer button{border:0;background:none;color:var(--on-navy);cursor:pointer;paddi
   <div class="wrap two">
     <div>
       <h2>For agents</h2>
-      <p class="lead">This page is plain HTML with a permalink for every dataset, and the same content is at <a href="agents.txt">agents.txt</a>. To use the data, connect to the <a href="https://github.com/mapbox/mcp-server/blob/main/docs/hosted-mcp-guide.md" target="_blank" rel="noopener">hosted MCP server</a> for search, geocoding and routing, the <a href="https://github.com/mapbox/mcp-devkit-server" target="_blank" rel="noopener">DevKit MCP server</a> for lookups into any tileset, or any API directly with a <a href="https://account.mapbox.com/auth/signup/" target="_blank" rel="noopener">token</a>. The <a href="https://docs.mapbox.com/llms.txt" target="_blank" rel="noopener">docs index</a> lists every reference page.</p>
+      <p class="lead">This page is plain HTML with a permalink for every dataset, and the same content is at <a href="agents.txt">agents.txt</a>. To use the data, connect to the <a href="https://docs.mapbox.com/location-ai/mcp-servers/mcp-server/" target="_blank" rel="noopener">hosted MCP server</a> for search, geocoding and routing, the <a href="https://docs.mapbox.com/location-ai/mcp-servers/devkit-mcp-server/" target="_blank" rel="noopener">DevKit MCP server</a> for lookups into any tileset, or any API directly with a <a href="https://account.mapbox.com/auth/signup/" target="_blank" rel="noopener">token</a>. The <a href="https://docs.mapbox.com/llms.txt" target="_blank" rel="noopener">docs index</a> lists every reference page.</p>
     </div>
 <div id="ask">
       <h2>Tell us what you need</h2>

@@ -137,7 +137,7 @@ def entry_html(r, title=None, sub_override=None):
     if kids:
         unit = "levels" if r["Product / dataset"] == "Boundaries v4" else "layers"
         levels = (f'<details open><summary>{len(kids)} {unit} inside</summary><ul class="levels">' +
-                  "".join(f'<li id="{e(k["Slug"])}"><b>{e(name(k))}</b><a class="lk" href="#{e(k["Slug"])}">link</a><span>{e(what(k))}</span>' + (f'<span><a href="{e(k["Docs link"])}" target="_blank" rel="noopener">Docs</a></span>' if k["Docs link"].strip() else "") + "</li>" for k in kids) + "</ul></details>")
+                  "".join(f'<li id="{e(k["Slug"])}"><a class="lk" href="#{e(k["Slug"])}"><b>{e(name(k))}</b></a><span>{e(what(k))}</span>' + (f'<span><a href="{e(k["Docs link"])}" target="_blank" rel="noopener">Docs</a></span>' if k["Docs link"].strip() else "") + "</li>" for k in kids) + "</ul></details>")
     # the call to action: the docs when there are any, and Contact sales for anything that needs a contract
     cta = ((f'<a class="btn primary" href="{e(docs)}" target="_blank" rel="noopener">Read the docs <span aria-hidden="true">→</span></a>' if docs else "")
            + (f'<a class="btn{"" if docs else " primary"}" href="{SALES}" target="_blank" rel="noopener">Contact sales</a>' if commercial else ""))
