@@ -21,7 +21,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -39,7 +39,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -75,7 +75,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -93,7 +93,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -111,7 +111,7 @@ Format: JPEG/PNG/WebP raster tiles
 Data type: Raster
 Updated: Rolling refresh by region
 Resolution / zoom range: Up to z22 in high-res areas (confirm)
-Price: PAYGO: Raster Tiles API requests
+Price: Raster Tiles API requests (see https://www.mapbox.com/pricing)
 License terms: Attribution required; vendor restrictions on reuse
 Model training allowed: No
 Useful for: Imagery basemap, hybrid maps, site inspection
@@ -129,7 +129,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -147,7 +147,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -165,7 +165,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -183,7 +183,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -201,7 +201,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -219,7 +219,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -237,7 +237,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -255,7 +255,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -273,7 +273,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -291,7 +291,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -309,7 +309,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -327,7 +327,7 @@ Format: Mapbox Vector Tile (MVT)
 Data type: Vector (lines, polygons, points)
 Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
 Resolution / zoom range: z0 to z16 (house numbers at z16)
-Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+Price: Vector Tiles API requests; Maps SDK loads / MAU (see https://www.mapbox.com/pricing)
 License terms: Attribution required; no raw export or derivative dataset under standard ToS
 Model training allowed: No
 Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
@@ -390,7 +390,7 @@ Format: PNG, elevation encoded in RGB
 Data type: Raster
 Updated: Static
 Resolution / zoom range: z0 to z15 (confirm)
-Price: PAYGO: Raster Tiles API requests
+Price: Raster Tiles API requests (see https://www.mapbox.com/pricing)
 License terms: Attribution required
 Model training allowed: No
 Useful for: Elevation queries, 3D terrain, profiles
@@ -408,7 +408,7 @@ Format: MVT
 Data type: Vector
 Updated: Static; updated with releases
 Resolution / zoom range: z0 to z14 (confirm)
-Price: PAYGO: Vector Tiles API requests
+Price: Vector Tiles API requests (see https://www.mapbox.com/pricing)
 License terms: Attribution required
 Model training allowed: No
 Useful for: Contours, hillshade, landcover styling; outdoor and aviation maps
@@ -426,7 +426,7 @@ Format: MVT
 Data type: Vector
 Updated: Static; updated with releases
 Resolution / zoom range: z0 to z14 (confirm)
-Price: PAYGO: Vector Tiles API requests
+Price: Vector Tiles API requests (see https://www.mapbox.com/pricing)
 License terms: Attribution required
 Model training allowed: No
 Useful for: Contours, hillshade, landcover styling; outdoor and aviation maps
@@ -444,7 +444,7 @@ Format: MVT
 Data type: Vector
 Updated: Static; updated with releases
 Resolution / zoom range: z0 to z14 (confirm)
-Price: PAYGO: Vector Tiles API requests
+Price: Vector Tiles API requests (see https://www.mapbox.com/pricing)
 License terms: Attribution required
 Model training allowed: No
 Useful for: Contours, hillshade, landcover styling; outdoor and aviation maps
@@ -479,7 +479,7 @@ Format: JSON
 Data type: Points with attributes
 Updated: Live
 Resolution / zoom range: 4 variants; see each
-Price: PAYGO per request or session
+Price: Per request or session (see https://www.mapbox.com/pricing)
 License terms: API ToS: results may not be cached beyond permitted window; no bulk harvesting
 Model training allowed: No
 Useful for: Place enrichment: hours, photos, activity, entrances
@@ -497,7 +497,7 @@ Format: JSON / GeoJSON
 Data type: Points with attributes
 Updated: Live
 Resolution / zoom range: n/a (computed per request)
-Price: PAYGO per request
+Price: Per request (see https://www.mapbox.com/pricing)
 License terms: API ToS: results may not be cached beyond permitted window; no bulk harvesting
 Model training allowed: No
 Useful for: Address lookup, reverse geocoding, batch geocoding
@@ -593,7 +593,7 @@ Format: Delivery schema from Mapbox (confirm: protobuf / CSV / OpenLR); MVT (con
 Data type: Vector (lines)
 Updated: Live; observations from the last 15 minutes
 Resolution / zoom range: 3 variants; see each
-Price: PAYGO: Vector Tiles API requests
+Price: Vector Tiles API requests (see https://www.mapbox.com/pricing)
 License terms: Attribution required; display use only
 Model training allowed: No
 Useful for: Live traffic on maps; custom routing engines; traffic analytics and simulation

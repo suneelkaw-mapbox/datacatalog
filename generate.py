@@ -107,6 +107,10 @@ def short_price(r):
     if "billing in progress" in low: return ("Pricing to come", PRICING)
     return (cap(re.split(r"[.;(]", p)[0][:40]) if p else "", PRICING if p else "")
 
+# ---- pay-as-you-go prices drop the PAYGO label, keep what is metered and point at the pricing page
+def paygo(r): return (r.get("Pricing model") or "").strip().upper().startswith("PAYGO")
+def metered(r): return cap(re.sub(r"^PAYGO[:\s]*", "", r["Pricing model"].strip(), flags=re.I))
+
 # ---- one dataset entry
 MORE = [("Format", "Format / encoding"), ("Updated", "Update cadence and freshness"), ("Price", "Pricing model"), ("Useful for", "Primary use cases"), ("Source", "Source and provenance"),
         ("License terms", "License terms (derivatives, storage, attribution)")]   # the essentials only; the full record is in the Sheet and the JSON export
@@ -132,7 +136,8 @@ def entry_html(r, title=None, sub_override=None):
     apis = ", ".join(f'<a href="{e(u)}" target="_blank" rel="noopener">{e(x)}</a>' if u else e(x) for x, u in link_apis(r["APIs and interfaces"]))
     sales = f'<dt>Licensing</dt><dd><a href="{SALES}" target="_blank" rel="noopener">Contact sales</a> for a contract; a token alone does not unlock this dataset.</dd>' if commercial else ""
     more = (f"<dt>How it ships</dt><dd>{ff}</dd>" + sales + (f"<dt>APIs</dt><dd>{apis}</dd>" if apis else "")
-            + "".join(f"<dt>{e(l)}</dt><dd>{e(r[c])}</dd>" for l, c in MORE if r.get(c, "").strip()))
+            + "".join(f"<dt>{e(l)}</dt><dd>" + (f'{e(metered(r))} (<a href="{PRICING}" target="_blank" rel="noopener">see pricing</a>)' if c == "Pricing model" and paygo(r) else e(r[c])) + "</dd>"
+                      for l, c in MORE if r.get(c, "").strip()))
     levels = ""
     if kids:
         unit = "levels" if r["Product / dataset"] == "Boundaries v4" else "layers"
@@ -168,7 +173,7 @@ for d in domains:
     index.append(f'<div class="ix" data-slug="{e(d["Slug"])}"><a href="#{e(d["Slug"])}" data-slug="{e(d["Slug"])}">{e(name(d))}</a><ul>' + "".join(f'<li><a href="#{e(r["Slug"])}" data-slug="{e(r["Slug"])}">{e(name(r))}</a></li>' for r in es) + "</ul></div>")
     dchips.append(f'<a class="dchip" href="#{e(d["Slug"])}" data-slug="{e(d["Slug"])}">{e(name(d))}</a>')
 facts_line = f"{len(shown)} datasets in {len([d for d in domains if entries[d['ID']]])} domains. Every entry is a permalink and the page is plain HTML, so agents can read it as is or as agents.txt."
-export = [{l: r.get(c, "") for l, c in PUBLIC if r.get(c, "").strip()} for r in shown]
+export = [{l: (f"{metered(r)} (see {PRICING})" if c == "Pricing model" and paygo(r) else r.get(c, "")) for l, c in PUBLIC if r.get(c, "").strip()} for r in shown]
 
 # ---- agents.txt
 def txt_entry(r):
@@ -178,6 +183,7 @@ def txt_entry(r):
                        ("Model training allowed", "Model training allowed"), ("Useful for", "Primary use cases"), ("Source", "Source and provenance"), ("Docs", "Docs link")):
         val = (r.get(col) or "").strip()
         if not val: continue
+        if col == "Pricing model" and paygo(r): val = f"{metered(r)} (see {PRICING})"
         if col == "APIs and interfaces": val = "; ".join(f"{p} ({u})" if u else p for p, u in link_apis(val))
         lines.append(f"{label}: {val}")
     kids = children(r)
