@@ -1,0 +1,315 @@
+<title>Mapbox Data Catalog</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Image-first reference page. The map image leads each entry, one sentence explains, three facts support, one link acts.
+   Chapters open with the domain's flagship image. Everything is static HTML from generate.py; the script only searches, filters and copies. */
+:root{
+  --bg:#FFFFFF; --surface:#FFFFFF; --surface-2:#F4F6FA; --line:#E6EAF0; --fg:#0B1221; --muted:#5C6B82;
+  --accent:#4264FB; --accent-ink:#FFFFFF; --accent-soft:#E9EDFF; --accent-line:#B9C6FF;
+  --navy:#0B1221; --navy-2:#121B30; --on-navy:#FFFFFF; --on-navy-muted:#AAB6CC; --navy-line:#243150;
+  --warn:#B46A00; --warn-soft:#FFF1DB; --plan:#3A55D9; --plan-soft:#E9EDFF;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif; --mono:"IBM Plex Mono",SFMono-Regular,Menlo,Consolas,monospace;
+  --radius:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0B1221; --surface:#121B30; --surface-2:#182340; --line:#27344F; --fg:#EEF2FA; --muted:#9AA8C2;
+  --accent:#7A93FF; --accent-ink:#0B1221; --accent-soft:#1D2A52; --accent-line:#3A4F9E;
+  --navy:#060A14; --navy-2:#0B1221; --on-navy:#FFFFFF; --on-navy-muted:#AAB6CC; --navy-line:#1E2A45;
+  --warn:#F2B55E; --warn-soft:#3A2A10; --plan:#A9B8FF; --plan-soft:#1D2A52; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0B1221; --surface:#121B30; --surface-2:#182340; --line:#27344F; --fg:#EEF2FA; --muted:#9AA8C2;
+  --accent:#7A93FF; --accent-ink:#0B1221; --accent-soft:#1D2A52; --accent-line:#3A4F9E;
+  --navy:#060A14; --navy-2:#0B1221; --on-navy:#FFFFFF; --on-navy-muted:#AAB6CC; --navy-line:#1E2A45;
+  --warn:#F2B55E; --warn-soft:#3A2A10; --plan:#A9B8FF; --plan-soft:#1D2A52; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5;margin:0;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+button{font:inherit;color:inherit}
+[hidden]{display:none!important}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0;max-width:1320px;margin:0 auto}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.1;letter-spacing:-.025em}
+h1{font-size:clamp(34px,4.6vw,54px);font-weight:700;letter-spacing:-.035em}
+h2{font-size:clamp(28px,3.4vw,40px);font-weight:700}
+h3{font-size:clamp(22px,2.2vw,28px);font-weight:700}
+.mono{font-family:var(--mono);font-size:12.5px}
+.btn{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:8px 14px;cursor:pointer;white-space:nowrap;font-weight:500;font-size:14px;color:var(--fg)}
+.btn:hover{background:var(--surface-2);text-decoration:none}
+.btn.primary{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.btn.primary:hover{filter:brightness(1.08);background:var(--accent)}
+.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,.chip:focus-visible,.dchip:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* top bar and hero */
+.top{background:var(--navy);color:var(--on-navy)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:58px;padding-block:9px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;white-space:nowrap;letter-spacing:-.01em}
+.brand .mark{width:26px;height:26px;border-radius:6px;background:var(--accent);display:inline-grid;place-items:center}
+.brand .mark::before{content:"";width:11px;height:11px;border-radius:50% 50% 50% 0;background:#fff;transform:rotate(-45deg) translate(0,-1px)}
+.brand span.light{font-weight:400;color:var(--on-navy-muted);margin-left:4px}
+.top nav{display:flex;gap:20px;font-size:14px;color:var(--on-navy-muted);align-items:center}
+.top nav a{color:inherit}
+.top nav a.signup{color:var(--on-navy);border:1px solid var(--navy-line);border-radius:6px;padding:5px 11px}
+@media (max-width:640px){.top nav a:not(.signup){display:none}}
+.hero{background:var(--navy);color:var(--on-navy)}
+.hero .wrap{padding-block:48px 44px;display:grid;grid-template-columns:minmax(0,1fr);gap:22px;justify-items:start}
+.hero .wrap > *{min-width:0;max-width:100%}
+.search{width:100%;max-width:640px;display:flex;align-items:center;gap:10px;background:#fff;border-radius:10px;padding:0 8px 0 18px}
+.search input{flex:1;min-width:0;border:0;background:transparent;color:#0B1221;font:inherit;font-size:16px;height:52px;outline:none}
+.search input::placeholder{color:#7A869C}
+.search .go{border:0;background:var(--accent);color:#fff;border-radius:7px;height:38px;padding:0 16px;cursor:pointer;font-weight:600}
+
+/* sticky rail: domain chips, phones only (the index does this job on wide screens) */
+.rail{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.rail .wrap{display:flex;align-items:center;gap:10px;padding-block:8px;min-width:0}
+.dchips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;min-width:0;flex:1;padding:2px 0}
+.dchips::-webkit-scrollbar{display:none}
+.dchip{border:1px solid transparent;background:none;color:var(--muted);cursor:pointer;padding:5px 10px;border-radius:999px;white-space:nowrap;font:inherit;font-size:13px;font-weight:500}
+.dchip:hover{background:var(--surface-2);color:var(--fg);text-decoration:none}
+.dchip.on{background:var(--accent-soft);color:var(--accent);border-color:var(--accent-line)}
+@media (min-width:1000px){.rail{display:none}}
+.hero .count{margin:-6px 0 0;color:var(--on-navy-muted);font-size:14px}
+
+/* body: quiet index + content */
+.main .wrap{display:grid;grid-template-columns:220px minmax(0,1fr);gap:48px;padding-block:8px 64px;align-items:start}
+@media (max-width:999px){.main .wrap{grid-template-columns:minmax(0,1fr);gap:0}.index{display:none}}
+.index{position:sticky;top:64px;max-height:calc(100vh - 80px);overflow:auto;padding:28px 8px 24px 0;font-size:14px;scrollbar-width:thin}
+.index .ix > a{display:block;font-weight:600;color:var(--muted);padding:6px 0;letter-spacing:-.01em}
+.index .ix > a:hover{color:var(--fg);text-decoration:none}
+.index .ix > a.on{color:var(--fg)}
+.index ul{list-style:none;margin:0 0 6px;padding:2px 0 6px 12px;border-left:1px solid var(--line);display:none}
+.index .ix.on ul{display:block}
+.index li a{display:block;color:var(--muted);padding:3px 0 3px 10px;font-size:13px;line-height:1.35;margin-left:-13px;border-left:2px solid transparent}
+.index li a:hover{color:var(--fg);text-decoration:none}
+.index li a.on{color:var(--accent);border-left-color:var(--accent)}
+.content{min-width:0}
+.empty{padding:48px 20px;text-align:center;color:var(--muted)}
+.empty b{display:block;color:var(--fg);font-size:20px;margin-bottom:6px;font-weight:700}
+
+/* chapter opener */
+.dom{padding:56px 0 0;scroll-margin-top:72px}
+.dom:first-child{padding-top:24px}
+.dom.single .ds{border-bottom:0}
+.dom.single .ds h3{font-size:clamp(28px,3.4vw,40px);letter-spacing:-.025em}
+.chapter{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;margin-bottom:8px}
+.chapter p{margin:8px 0 0;color:var(--muted);max-width:68ch;font-size:17px;line-height:1.5}
+.chapter .hero-img{width:100%;aspect-ratio:3/1;max-width:100%;overflow:hidden;border-radius:var(--radius);background:var(--surface-2)}
+.chapter .hero-img img{width:100%;height:100%;object-fit:cover;display:block}
+@media (max-width:640px){.chapter .hero-img{aspect-ratio:2/1}}
+
+/* one dataset: image left, words right */
+.ds{display:grid;grid-template-columns:minmax(0,1fr);gap:16px 40px;align-items:center;padding:30px 0;border-bottom:1px solid var(--line);scroll-margin-top:72px}
+.ds > *{min-width:0}
+@media (min-width:760px){.ds.has-img{grid-template-columns:minmax(0,4fr) minmax(0,7fr)}}
+.ds:target{background:linear-gradient(90deg,var(--accent-soft),transparent 70%);margin:0 -16px;padding-left:16px;padding-right:16px;border-radius:var(--radius)}
+.ds .img{width:90%;aspect-ratio:3/2;max-width:100%;overflow:hidden;border-radius:var(--radius);background:var(--surface-2)}
+.ds .img img{width:100%;height:100%;object-fit:cover;display:block}
+.ds .words{display:grid;gap:12px;align-content:center}
+.ds h3 a{color:var(--fg)}
+.ds h3 a:hover{color:var(--accent);text-decoration:none}
+.ds .tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:5px;background:var(--warn-soft);color:var(--warn);margin-bottom:2px;justify-self:start}
+.ds .tag.preview{background:var(--plan-soft);color:var(--plan)}
+.ds .sub{font-size:13px;color:var(--muted);margin-top:-6px}
+.ds .what{margin:0;font-size:16.5px;line-height:1.55;max-width:56ch}
+.ds .three{margin:0;color:var(--muted);font-size:14px;display:flex;flex-wrap:wrap;gap:4px 0}
+.ds .three span + span::before{content:"·";margin:0 9px;color:var(--line)}
+.ds .three a{color:var(--muted);text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}
+.ds .three a:hover{color:var(--accent);text-decoration-color:var(--accent)}
+.ds a.plus{display:inline-flex;align-items:center;gap:5px;color:var(--muted);font-size:14px;white-space:nowrap;vertical-align:baseline;margin-left:4px}
+.ds a.plus .glyph{display:inline-flex;width:20px;height:20px;border:1px solid var(--line);border-radius:50%;align-items:center;justify-content:center;font-size:14px;line-height:1;color:var(--muted)}
+.ds a.plus:hover{color:var(--accent);text-decoration:none}
+.ds a.plus:hover .glyph{border-color:var(--accent);color:var(--accent)}
+.ds .more{margin-top:2px}
+.kv a{overflow-wrap:anywhere}
+.ds details{font-size:14px}
+.ds details summary{cursor:pointer;color:var(--muted);list-style:none;display:inline-flex;align-items:center;gap:6px;font-size:14.5px}
+.ds details summary::-webkit-details-marker{display:none}
+.ds details summary::after{content:"+";display:inline-flex;width:18px;height:18px;border:1px solid var(--line);border-radius:5px;align-items:center;justify-content:center;font-size:12px}
+.ds details[open] summary::after{content:"–"}
+.ds details summary:hover{color:var(--fg)}
+.kv{display:grid;grid-template-columns:170px minmax(0,1fr);gap:5px 14px;font-size:13.5px;margin:14px 0 0}
+.kv dt{color:var(--muted)}
+.kv dd{margin:0;min-width:0;overflow-wrap:anywhere}
+@media (max-width:480px){.kv{grid-template-columns:1fr}.kv dt{margin-top:6px}}
+.levels{margin:12px 0 0;padding:0;list-style:none;display:grid;gap:6px}
+.levels li{border:1px solid var(--line);border-radius:8px;padding:8px 11px;font-size:13.5px;scroll-margin-top:72px}
+.levels li:target{border-color:var(--accent);background:var(--accent-soft)}
+.levels b{font-weight:600}
+.levels span{color:var(--muted);display:block}
+.levels a.lk{font-size:12px;color:var(--muted);text-decoration:underline;margin-left:6px}
+
+
+/* agents and request */
+.band{border-top:1px solid var(--line)}
+.band .wrap{padding-block:56px}
+.band.soft{background:var(--surface-2)}
+.band h2{font-size:26px}
+.lead{color:var(--muted);max-width:60ch;margin:10px 0 24px;font-size:15.5px}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}
+@media (max-width:860px){.two{grid-template-columns:minmax(0,1fr);gap:40px}}
+.two > div,.steps li,.steps{min-width:0;max-width:100%}
+.steps li{overflow-wrap:anywhere}
+.code{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:12px 44px 12px 14px;font-family:var(--mono);font-size:12.5px;overflow-x:auto;white-space:pre;margin:8px 0 14px;max-width:100%;box-sizing:border-box}
+.code .copy{position:absolute;top:8px;right:8px;font-size:11px;padding:3px 9px}
+.steps{display:grid;gap:10px;margin:0;padding-left:18px}
+.steps li::marker{color:var(--muted)}
+details.more{margin-top:18px}
+details.more summary{cursor:pointer;font-weight:500;list-style:none;display:flex;align-items:center;gap:8px;color:var(--fg)}
+details.more summary::-webkit-details-marker{display:none}
+form.req{display:grid;gap:12px;max-width:520px}
+form.req label{display:grid;gap:5px;font-size:13px;color:var(--muted)}
+form.req input,form.req textarea,form.req select{border:1px solid var(--line);background:var(--surface);color:var(--fg);border-radius:8px;padding:10px 12px;font:inherit}
+form.req textarea{min-height:76px;resize:vertical}
+form.req .row2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+form.req input:invalid:not(:placeholder-shown){border-color:#C9452B}
+.out{display:none;margin-top:14px}
+.out.show{display:block}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:9px 16px;border-radius:8px;font-size:13px;opacity:0;pointer-events:none;transition:opacity .2s;z-index:60}
+.toast.show{opacity:1}
+footer{background:var(--navy);color:var(--on-navy-muted)}
+footer .wrap{padding-block:32px 48px;font-size:13px;display:grid;gap:14px}
+footer a{color:var(--on-navy)}
+footer .dev{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+footer button{border:0;background:none;color:var(--on-navy);cursor:pointer;padding:0;text-decoration:underline}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}html{scroll-behavior:auto}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand"><span class="mark"></span>Mapbox<span class="light">Data catalog</span></div>
+    <nav><a href="#catalog">Datasets</a><a href="#agents">For agents</a><a href="#ask">Request data</a><a href="https://docs.mapbox.com/" target="_blank" rel="noopener">Docs</a><a class="signup" href="https://account.mapbox.com/auth/signup/" target="_blank" rel="noopener">Sign up</a></nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1>Every dataset Mapbox makes.</h1>
+    <form class="search" id="searchForm" role="search"><input id="q" type="search" placeholder="Search datasets" autocomplete="off" aria-label="Search the catalog"><button class="go" type="submit">Search</button></form>
+    <p class="count num" id="count" hidden></p>
+  </div>
+</section>
+
+<div class="rail" id="catalog">
+  <div class="wrap">
+    <nav class="dchips" id="dchips" aria-label="Jump to a domain">__DCHIPS__</nav>
+  </div>
+</div>
+
+<section class="main">
+  <div class="wrap">
+    <nav class="index" id="index" aria-label="Catalog index">__INDEX__</nav>
+    <div class="content" id="content">
+      __SECTIONS__
+      <div class="empty" id="empty" hidden><b>Nothing matches yet.</b>Try another word, or tell us what you need below.</div>
+    </div>
+  </div>
+</section>
+
+<section class="band soft" id="agents">
+  <div class="wrap two">
+    <div>
+      <h2>For agents</h2>
+      <p class="lead">This page is plain HTML with a permalink for every dataset, and the same content is at <a href="agents.txt">agents.txt</a>. To use the data, connect to the <a href="https://github.com/mapbox/mcp-server/blob/main/docs/hosted-mcp-guide.md" target="_blank" rel="noopener">hosted MCP server</a> for search, geocoding and routing, the <a href="https://github.com/mapbox/mcp-devkit-server" target="_blank" rel="noopener">DevKit MCP server</a> for lookups into any tileset, or any API directly with a <a href="https://account.mapbox.com/auth/signup/" target="_blank" rel="noopener">token</a>. The <a href="https://docs.mapbox.com/llms.txt" target="_blank" rel="noopener">docs index</a> lists every reference page.</p>
+    </div>
+<div id="ask">
+      <h2>Tell us what you need</h2>
+      <p class="lead">If the dataset you need is not here, or not in the shape you need, say so. Every request shapes what we build and license next.</p>
+      <form class="req" id="reqForm">
+        <label>What do you need?<input id="rWhat" required placeholder="e.g. all coffee shops in a city as a CSV"></label>
+        <label>What will you build with it?<textarea id="rUse" placeholder="Use case, customer, timeline"></textarea></label>
+        <label>How should it ship?<select id="rFF"><option>API</option><option>Vector tiles</option><option>Raster tiles</option><option>SDK featureset</option><option>Flat file</option><option>Licensed feed</option><option>Spatial Query</option><option>Not sure</option></select></label>
+        <div class="row2">
+          <label>Your name<input id="rName" required autocomplete="name" placeholder="First and last name"></label>
+          <label>Email<input id="rEmail" type="email" required autocomplete="email" placeholder="you@company.com"></label>
+        </div>
+        <label>Organization<input id="rOrg" required autocomplete="organization" placeholder="Company or Mapbox team"></label>
+        <div><button class="btn primary" type="submit">Send request</button></div>
+      </form>
+      <div class="out" id="reqOut">
+        <p class="lead" style="margin:0 0 6px;font-size:14px">Ready to paste into the <a id="gapsLink" href="#" target="_blank" rel="noopener">gap log</a> or send to the catalog owner:</p>
+        <div class="code" id="reqText" data-copy></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>__FACTS__</span>
+    <span>Internal working draft. Source of truth: <a id="sheetLink" href="#" target="_blank" rel="noopener">the catalog spreadsheet</a>.</span>
+    <span class="dev">For developers and agents: <a href="agents.txt">agents.txt</a><button type="button" id="copyJson">Copy catalog as JSON</button><button type="button" id="copyCsv">Copy as CSV</button></span>
+  </div>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script id="data" type="application/json">__DATA__</script>
+<script>
+(function(){
+  const SHEET = "__SHEET__", BASE = "__BASE__";
+  const EXPORT = JSON.parse(document.getElementById('data').textContent);
+  // Shared with the generator (generate.py and site_sheet.py read these from this file): display names, the gap-log products, lead datasets, API docs.
+  const NAMES={"Streets v8|poi_label":"POI labels","Streets v8|place_label":"Place labels","Streets v8|housenum_label":"House number labels","Streets v8|landuse_overlay":"Land use overlay","Streets v8|landuse":"Land use","Streets v8|natural_label":"Natural feature labels","Streets v8|transit_stop_label":"Transit stop labels","Streets v8|airport_label":"Airport labels","Streets v8|motorway_junction":"Motorway junctions","Streets v8|admin":"Admin boundary lines","Streets v8|road":"Roads, paths and rail","Streets v8|structure":"Structures","Streets v8|water":"Water","Streets v8|waterway":"Waterways","Streets v8|aeroway":"Aeroways","Streets v8|building":"Building footprints",
+    "Satellite|Composite imagery":"Satellite imagery","NAIP|aerial imagery":"NAIP aerial imagery (US)","Countries v1|country polygons":"Countries","Boundaries v4|Lookup metadata":"Boundaries lookup tables","Mapbox Standard|landmark-icons":"Landmarks","3D landmarks|3D landmarks and building models":"3D landmarks","Procedural 3D buildings|procedural buildings and facades":"Procedural 3D buildings","Terrain-RGB v1|Elevation raster":"Elevation raster","Places POI dataset|Places POI dataset":"Places POI dataset","Address dataset|Address dataset":"Address dataset","EV charging locations|EV charging locations":"EV charging locations","Indoor v3|indoor":"Indoor v3","Transit v2|transit":"Transit v2 (Japan)","Bathymetry v2|bathymetry":"Bathymetry","Speed cameras|camera locations and quality":"Speed cameras","Terrain v2|contour":"Contour lines","Terrain v2|hillshade":"Hillshade","Terrain v2|landcover":"Land cover","Parking (Parkopedia)|parking locations, availability, payment":"Parking (Parkopedia)","Streets v8|Road attributes for routing":"Road attributes for routing",
+    "Traffic v1 tileset|Live traffic on the map (tiles)":"Live traffic on the map","Autopilot Map|Physical objects":"HD physical objects","Autopilot Map|Driving patterns":"HD driving patterns","Traffic incidents|Incidents":"Incidents","Tolls and speed limits|Toll cost calculation":"Toll cost calculation","Movement|Movement":"Movement","Autopilot Map|3D Lane Data / Autopilot Map":"3D lane data (Autopilot Map)","Traffic v1 tileset and Traffic Data|Traffic Data":"Traffic Data","Boundaries v4|Mapbox Boundaries":"Mapbox Boundaries","Indoor v3|Indoor v3":"Indoor v3",
+    "Japan Weather Layers|weather-jp-nowcast":"Precipitation nowcast (now + 60 min)","Japan Weather Layers|weather-jp-nowcast-last-60m":"Precipitation, previous 60 min","Japan Weather Layers|weather-jp-rain-1-6":"Precipitation forecast, 1 to 6 h","Japan Weather Layers|weather-jp-rain-7-15":"Precipitation forecast, 7 to 15 h","Japan Weather Layers|weather-jp-temperature-0-39":"Temperature, now + 39 h","Japan Weather Layers|weather-jp-temperature-40-78":"Temperature, 40 to 78 h","Japan Weather Layers|weather-jp-wind-0-39":"Wind, now + 39 h","Japan Weather Layers|weather-jp-wind-40-78":"Wind, 40 to 78 h","Japan Weather Layers|weather-jp-snowdepth":"Snow depth forecast, 6 h","Japan Weather Layers|weather-jp-snowdepth-last-6hr":"Snow depth, previous 6 h","Japan Weather Layers|weather-jp-alert":"Flood damage risk","Japan Weather Layers|weather-jp-landslide":"Landslide risk","Japan Weather Layers|weather-jp-river-flood":"River flood risk"};
+  const LAB=new Set(["Place answers","Place commerce","Place change feed","Address validation","Entity cross-links","Location context","Air quality","Pollen and UV","Hazard alerts","Live transit departures","EV charger availability","Tolls and speed limits","Local events","Street-level imagery","3D assets export","Places corpus","Road graph","Address corpus","Geospatial QA benchmark","Area statistics","Building and parcel attributes","Country and locale facts","GeoMemories","Promoted pins","Traffic incidents","Search (bulk)"]);
+  const LEAD=["Roads, paths and rail","Road attributes for routing","HD physical objects","Live traffic on the map","Places POI dataset","Address dataset","Administrative","Building footprints","3D landmarks","Land use","Water","Elevation raster","Satellite imagery","Transit stop labels","Japan Weather Layers","EV charging locations"];
+  const API_DOCS={"Vector Tiles API":"https://docs.mapbox.com/api/maps/vector-tiles/","Raster Tiles API":"https://docs.mapbox.com/api/maps/raster-tiles/","Rasterarray Tiles API":"https://docs.mapbox.com/api/maps/raster-arrays/","Tilequery API":"https://docs.mapbox.com/api/maps/tilequery/","Static Images API":"https://docs.mapbox.com/api/maps/static-images/",
+    "Directions API":"https://docs.mapbox.com/api/navigation/directions/","Map Matching API":"https://docs.mapbox.com/api/navigation/map-matching/","Matrix API":"https://docs.mapbox.com/api/navigation/matrix/","Isochrone API":"https://docs.mapbox.com/api/navigation/isochrone/","Optimization API":"https://docs.mapbox.com/api/navigation/optimization/","EV Charge Finder API":"https://docs.mapbox.com/api/navigation/ev-charge-finder/",
+    "Search Box API":"https://docs.mapbox.com/api/search/search-box/","Geocoding API":"https://docs.mapbox.com/api/search/geocoding/","Places API":"https://docs.mapbox.com/api/search/places/","Datasets API":"https://docs.mapbox.com/api/maps/datasets/","Tiling Service":"https://docs.mapbox.com/api/maps/mapbox-tiling-service/",
+    "Maps SDK Interactions":"https://docs.mapbox.com/mapbox-gl-js/guides/interactions/","Maps SDKs via Mapbox Standard":"https://docs.mapbox.com/map-styles/standard/guides/","Maps SDKs":"https://docs.mapbox.com/#maps","Navigation SDK":"https://docs.mapbox.com/#navigation","Nav SDK":"https://docs.mapbox.com/#navigation","ADAS SDK":"https://docs.mapbox.com/adas/","Spatial Query":"https://www.mapbox.com/contact/sales/",
+    "Licensed":"https://www.mapbox.com/contact/sales/","Overpass API":"https://wiki.openstreetmap.org/wiki/Overpass_API","Nominatim":"https://nominatim.org/release-docs/latest/api/Overview/","Photon":"https://photon.komoot.io/","OSRM":"https://project-osrm.org/docs/v5.24.0/api/"};
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+  const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const ARTS=$$('article.ds'), SECS=$$('section.dom'), TOTAL=ARTS.length;
+  const state={ q:"" };
+  const matches=a=>!state.q || a.dataset.hay.includes(state.q.toLowerCase());
+  const filtering=()=>!!state.q;
+  function render(){
+    let shown=0;
+    ARTS.forEach(a=>{ const ok=matches(a); a.hidden=!ok; if(ok) shown++; });
+    SECS.forEach(s=>{ const any=[...s.querySelectorAll('article.ds')].some(a=>!a.hidden); s.hidden=!any; const ch=s.querySelector('.chapter'); if(ch) ch.hidden=filtering(); });
+    $$('#index li a').forEach(l=>{ const a=document.getElementById(l.dataset.slug); l.parentElement.hidden=!!(a&&a.hidden); });
+    $$('#index .ix').forEach(x=>{ x.hidden=![...x.querySelectorAll('li')].some(li=>!li.hidden); });
+    $$('.dchip').forEach(c=>{ const s=document.getElementById(c.dataset.slug); c.hidden=!!(s&&s.hidden); });
+    $('#empty').hidden=shown>0;
+    const cnt=$('#count'); cnt.hidden=!filtering(); cnt.textContent=filtering()?`${shown} of ${TOTAL} datasets match “${state.q}”`:"";
+  }
+  // the index opens the chapter being read and marks the entry in view
+  const ixs=$$('#index .ix'); if(ixs[0]) ixs[0].classList.add('on');
+  if('IntersectionObserver' in window){
+    const links=$$('#index li a'), chips=$$('.dchip');
+    const io=new IntersectionObserver(es=>{ es.forEach(e=>{ if(!e.isIntersecting) return; const id=e.target.id, dom=e.target.closest('section.dom')?.id;
+      links.forEach(l=>l.classList.toggle('on',l.dataset.slug===id)); ixs.forEach(x=>{ const on=x.dataset.slug===dom; x.classList.toggle('on',on); x.querySelector('a').classList.toggle('on',on); }); chips.forEach(c=>c.classList.toggle('on',c.dataset.slug===dom));
+      const on=$('#index li a.on'); if(on) on.scrollIntoView({block:'nearest'}); const oc=$('.dchip.on'); if(oc) oc.scrollIntoView({block:'nearest',inline:'nearest'}); }); },{rootMargin:'-72px 0px -60% 0px',threshold:0});
+    ARTS.forEach(a=>io.observe(a));
+  }
+  function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('show'),1600); }
+  function copy(text,msg){
+    const done=()=>toast(msg||"Copied");
+    const fallback=()=>{ const ta=document.createElement('textarea'); ta.value=text; ta.style.position='fixed'; ta.style.opacity='0'; document.body.appendChild(ta); ta.select(); try{ document.execCommand('copy'); done(); }catch(e){ toast("Select the text and copy it"); } ta.remove(); };
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done,fallback); } else fallback();
+  }
+  const pageUrl=()=>BASE||location.href.split('#')[0];
+  function toCsv(){
+    const keys=Object.keys(EXPORT[0]||{}); const q=s=>{ s=String(s==null?"":s); return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; };
+    return [keys.join(","), ...EXPORT.map(r=>keys.map(k=>q(r[k])).join(","))].join("\n");
+  }
+  // the title and the plus both open the full details; the URL takes the entry's permalink without jumping
+  $('#content').addEventListener('click',e=>{ const t=e.target.closest('a.toggle'); if(!t) return; e.preventDefault(); const m=document.getElementById(t.dataset.toggle); if(!m) return; m.hidden=!m.hidden;
+    const art=t.closest('article.ds'); art.querySelectorAll('a.plus').forEach(p=>{ p.querySelector('.glyph').textContent=m.hidden?'+':'–'; p.querySelector('.word').textContent=m.hidden?'More':'Less'; });
+    try{ history.replaceState(null,'','#'+art.id); }catch(err){} });
+  $('#q').addEventListener('input',e=>{ state.q=e.target.value.trim(); render(); });
+  $('#searchForm').addEventListener('submit',e=>{ e.preventDefault(); state.q=$('#q').value.trim(); render(); if(state.q){ const first=ARTS.find(a=>!a.hidden); if(first) first.scrollIntoView({behavior:'smooth',block:'start'}); } });
+  $('#copyJson').onclick=()=>copy(JSON.stringify({title:"Mapbox data catalog",generated:"__DATE__",page:pageUrl(),entries:EXPORT.map(r=>Object.assign({"Permalink":pageUrl()+"#"+r.Slug},r))},null,1),"Catalog JSON copied");
+  $('#copyCsv').onclick=()=>copy(toCsv(),"Catalog CSV copied");
+  $$('.code[data-copy] .copy').forEach(b=>b.addEventListener('click',()=>{ const el=b.parentElement; copy(el.textContent.replace(/Copy$/,"").trim()); }));
+  $('#reqForm').addEventListener('submit',e=>{ e.preventDefault();
+    const text=`Catalog request (${new Date().toISOString().slice(0,10)})\nWhat: ${$('#rWhat').value.trim()}\nUse case: ${$('#rUse').value.trim()||"—"}\nHow it should ship: ${$('#rFF').value}\nRequested by: ${$('#rName').value.trim()} <${$('#rEmail').value.trim()}>, ${$('#rOrg').value.trim()}`;
+    $('#reqText').innerHTML=esc(text)+'<button class="btn small copy" type="button">Copy</button>'; $('#reqText').querySelector('.copy').onclick=()=>copy(text,"Request copied"); $('#reqOut').classList.add('show'); $('#reqOut').scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+  $('#sheetLink').href=SHEET; $('#gapsLink').href=SHEET+"#gid=300";
+  render();
+})();
+</script>

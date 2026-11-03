@@ -1,0 +1,725 @@
+# Mapbox data catalog
+Generated 2026-11-02. Page: https://hey.mapbox.com/data-catalogV2/. Each dataset has a permalink (https://hey.mapbox.com/data-catalogV2/#<slug>); the page itself is static HTML with the same content.
+Datasets reach an agent three ways: the hosted runtime MCP server (https://mcp.mapbox.com/mcp) for search, geocoding, routing, matrices, isochrones and map matching;
+the DevKit MCP server (https://mcp-devkit.mapbox.com/mcp) for point lookups into any vector tileset (Tilequery) plus styles and tokens;
+and REST with an access token for tiles, rasters, files and feeds. Datasets marked Contact sales need a contract before a token works (https://www.mapbox.com/contact/sales/).
+Sign up for a token: https://account.mapbox.com/auth/signup/ . Pricing: https://www.mapbox.com/pricing . Docs index: https://docs.mapbox.com/llms.txt
+Handling rules: longitude then latitude; store the retrieval time, source URL, product version and area with any result; typical traffic is historical and Places activity is historical busyness;
+Movement never exposes individual trajectories; treat 401 and 403 as a missing contract or token scope and 429 as a rate limit.
+
+## Basemap
+The layers of the Mapbox base map: roads, buildings, land, water, places and labels, plus satellite imagery and 3D landmarks.
+
+### Roads, paths and rail
+URL: https://hey.mapbox.com/data-catalogV2/#roads-paths-and-rail
+Domain: Basemap
+Status: Available (GA)
+Description: The road, path and rail network, classified by function and importance, with names, surface, one-way direction and access restrictions
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan). Coverage template sources: OSM; Zenrin (Japan); GeoTech as alternative
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#road
+
+### Building footprints
+URL: https://hey.mapbox.com/data-catalogV2/#building-footprints
+Domain: Basemap
+Status: Available (GA)
+Description: Building footprint polygons, with name, type and height attributes where surveyed
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#building
+
+### 3D landmarks
+URL: https://hey.mapbox.com/data-catalogV2/#3d-landmarks
+Domain: Basemap
+Status: Available (GA)
+Description: 3D models for key landmarks
+How it ships: SDK featureset
+APIs and interfaces: SDK
+Format: Maps SDK Interactions / featuresets
+Data type: 3D models and attributes
+Updated: With Standard style releases
+Resolution / zoom range: Style-dependent
+Price: Included in Maps SDK / GL JS usage
+License terms: SDK ToS
+Model training allowed: No
+Useful for: Interactive basemap features, 3D cities
+Source: Streets v8 + landmarks, 3D models, indoor and HD road data. Coverage template sources: OSM (open)
+Docs: https://docs.mapbox.com/map-styles/reference/standard/
+
+### Land use
+URL: https://hey.mapbox.com/data-catalogV2/#land-use
+Domain: Basemap
+Status: Available (GA)
+Description: Land use and land cover polygons covering parks, cemeteries, schools, hospitals, airport grounds, industrial and agricultural areas, pitches and sand
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#landuse
+
+### Water
+URL: https://hey.mapbox.com/data-catalogV2/#water
+Domain: Basemap
+Status: Available (GA)
+Description: Ocean, lake, river and reservoir polygons derived from coastline and water area geometry
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#water
+
+### Satellite imagery
+URL: https://hey.mapbox.com/data-catalogV2/#satellite-imagery
+Domain: Basemap
+Status: Available (GA)
+Description: Global basemap of high resolution satellite and aerial imagery
+How it ships: Raster tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Raster Tiles API (https://docs.mapbox.com/api/maps/raster-tiles/)
+Format: JPEG/PNG/WebP raster tiles
+Data type: Raster
+Updated: Rolling refresh by region
+Resolution / zoom range: Up to z22 in high-res areas (confirm)
+Price: PAYGO: Raster Tiles API requests
+License terms: Attribution required; vendor restrictions on reuse
+Model training allowed: No
+Useful for: Imagery basemap, hybrid maps, site inspection
+Source: Maxar (bought); Airbus as alternative
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-satellite/
+
+### Transit stop labels
+URL: https://hey.mapbox.com/data-catalogV2/#transit-stop-labels
+Domain: Basemap
+Status: Available (GA)
+Description: Rail, metro, tram, bus and ferry stops and stations, with names and transport mode
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#transit_stop_label
+
+### Admin boundary lines
+URL: https://hey.mapbox.com/data-catalogV2/#admin-boundary-lines
+Domain: Basemap
+Status: Available (GA)
+Description: National, state and other administrative boundary lines, classified by level and by whether the boundary is disputed or maritime
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan). Coverage template sources: International Mapping (disputed borders service)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#admin
+
+### Aeroways
+URL: https://hey.mapbox.com/data-catalogV2/#aeroways
+Domain: Basemap
+Status: Available (GA)
+Description: Runways, taxiways, aprons and helipads at airports, airfields and heliports, represented as lines and polygons
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#aeroway
+
+### Airport labels
+URL: https://hey.mapbox.com/data-catalogV2/#airport-labels
+Domain: Basemap
+Status: Available (GA)
+Description: Airport and airfield points with names and IATA/ICAO reference codes
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#airport_label
+
+### House number labels
+URL: https://hey.mapbox.com/data-catalogV2/#house-number-labels
+Domain: Basemap
+Status: Available (GA)
+Description: Street address points and interpolated address ranges, carrying the house number
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan). Coverage template sources: OSM; Remax (US addresses); Lightbox (CA); Loveland (sub-units); ATTOM (US address and neighborhood); AccuZIP (US postal); Loqate fallback and Deyde (SA, EU, ME) for geocoding
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#housenum_label
+
+### Land use overlay
+URL: https://hey.mapbox.com/data-catalogV2/#land-use-overlay
+Domain: Basemap
+Status: Available (GA)
+Description: National park, nature reserve and wetland polygons (marsh, swamp, bog) drawn as shaded overlays
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#landuse_overlay
+
+### Motorway junctions
+URL: https://hey.mapbox.com/data-catalogV2/#motorway-junctions
+Domain: Basemap
+Status: Available (GA)
+Description: Freeway exit nodes carrying exit numbers and junction names
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan). Coverage template sources: OSM; Zenrin (Japan); GeoTech as alternative
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#motorway_junction
+
+### Natural feature labels
+URL: https://hey.mapbox.com/data-catalogV2/#natural-feature-labels
+Domain: Basemap
+Status: Available (GA)
+Description: Named natural features including peaks, valleys, lakes, glaciers, beaches, woodland, and named oceans and seas
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#natural_label
+
+### Place labels
+URL: https://hey.mapbox.com/data-catalogV2/#place-labels
+Domain: Basemap
+Status: Available (GA)
+Description: Country and state or province label points, with names and rank for label priority
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#place_label
+
+### POI labels
+URL: https://hey.mapbox.com/data-catalogV2/#poi-labels
+Domain: Basemap
+Status: Available (GA)
+Description: Points of interest — shops, restaurants, schools, parks, offices and other amenities serving residents and visitors — with names and categories
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan). Coverage template sources: OSM + Dataplor + TripAdvisor (POIs, open + bought + enriched)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#poi_label
+
+### Structures
+URL: https://hey.mapbox.com/data-catalogV2/#structures
+Domain: Basemap
+Status: Available (GA)
+Description: Bridges and tunnels carrying roads, paths and railways
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan). Coverage template sources: OSM; Zenrin (Japan); GeoTech as alternative
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#structure
+
+### Waterways
+URL: https://hey.mapbox.com/data-catalogV2/#waterways
+Domain: Basemap
+Status: Available (GA)
+Description: Rivers, streams, canals, drains and ditches represented as lines
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: Mapbox Vector Tile (MVT)
+Data type: Vector (lines, polygons, points)
+Updated: Continuous. Edits from OpenStreetMap and from Mapbox's own data program flow into the tiles as they land, so there is no release cycle to wait for. Automated checks catch suspicious edits such as vandalism or mass deletions and hold them for a person to review before they reach the map.
+Resolution / zoom range: z0 to z16 (house numbers at z16)
+Price: PAYGO: Vector Tiles API requests; Maps SDK loads / MAU
+License terms: Attribution required; no raw export or derivative dataset under standard ToS (confirm with Legal)
+Model training allowed: No
+Useful for: Base map rendering, feature lookup (Tilequery), custom cartography
+Source: Mapbox proprietary data + OpenStreetMap, Microsoft Open Maps, Wikidata; Zenrin (Japan)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-streets-v8/#waterway
+
+### Countries
+URL: https://hey.mapbox.com/data-catalogV2/#countries
+Domain: Basemap
+Status: Available (GA)
+Description: This layer contains the boundary polygons representing all countries and territories with a unique ISO 3166-1 code.
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: MVT
+Data type: Vector (polygons)
+Price: Free
+Source: LSIB, Natural Earth, OSM (open); GfK; eMapGo for China (license ended 2022); 2,000+ authoritative sources per product page
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-countries-v1/
+
+### Bathymetry
+URL: https://hey.mapbox.com/data-catalogV2/#bathymetry
+Domain: Basemap
+Status: Available (GA)
+Description: Provides underwater depth of sea floor at discrete minimum depth levels. The purpose of this tileset is to add ocean detail at low zoom levels.
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: MVT
+Data type: Vector (polygons)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-bathymetry-v2/
+
+### Landmark icons/POIs
+URL: https://hey.mapbox.com/data-catalogV2/#landmark-icons-pois
+Domain: Basemap
+Status: Available (GA)
+Description: Unique POI icons for key landmarks, visible on lower zoom than normal POIs
+How it ships: SDK featureset
+APIs and interfaces: Visually via Mapbox Standard Mapstyle
+Docs: https://docs.mapbox.com/map-styles/standard/guides/
+
+### Elevated Structures
+URL: https://hey.mapbox.com/data-catalogV2/#elevated-structures
+Domain: Basemap
+Status: Available (GA)
+Description: 3D bridges, tunnels, and overpasses
+How it ships: SDK featureset
+APIs and interfaces: SDK
+Docs: https://docs.mapbox.com/map-styles/standard/guides/
+
+## Terrain
+Elevation, contour lines, hillshade and land cover for the whole world.
+
+### Elevation raster
+URL: https://hey.mapbox.com/data-catalogV2/#elevation-raster
+Domain: Terrain
+Status: Available (GA)
+Description: Raster tileset of a global elevation layer
+How it ships: Raster tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Raster Tiles API (https://docs.mapbox.com/api/maps/raster-tiles/)
+Format: PNG, elevation encoded in RGB
+Data type: Raster
+Updated: Static
+Resolution / zoom range: z0 to z15 (confirm)
+Price: PAYGO: Raster Tiles API requests
+License terms: Attribution required
+Model training allowed: No
+Useful for: Elevation queries, 3D terrain, profiles
+Source: Mapbox terrain compilation
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-terrain-rgb-v1/
+
+### Land cover
+URL: https://hey.mapbox.com/data-catalogV2/#land-cover
+Domain: Terrain
+Status: Available (GA)
+Description: Provides a generalized backdrop of vegetation, agriculture, and permanent ice & snow. It is intended for stylistic use and not appropriate for science or other analysis.
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: MVT
+Data type: Vector
+Updated: Static; updated with releases
+Resolution / zoom range: z0 to z14 (confirm)
+Price: PAYGO: Vector Tiles API requests
+License terms: Attribution required
+Model training allowed: No
+Useful for: Contours, hillshade, landcover styling; outdoor and aviation maps
+Source: Mapbox terrain compilation (public DEM sources; see mapbox.com/about/maps)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-terrain-v2/#landcover
+
+### Hillshade
+URL: https://hey.mapbox.com/data-catalogV2/#hillshade
+Domain: Terrain
+Status: Available (GA)
+Description: Contains polygons that when styled appropriately display shaded relief of hills.
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: MVT
+Data type: Vector
+Updated: Static; updated with releases
+Resolution / zoom range: z0 to z14 (confirm)
+Price: PAYGO: Vector Tiles API requests
+License terms: Attribution required
+Model training allowed: No
+Useful for: Contours, hillshade, landcover styling; outdoor and aviation maps
+Source: Mapbox terrain compilation (public DEM sources; see mapbox.com/about/maps)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-terrain-v2/#hillshade
+
+### Contour lines
+URL: https://hey.mapbox.com/data-catalogV2/#contour-lines
+Domain: Terrain
+Status: Available (GA)
+Description: Show vertical dimension on a region by joining points of equal elevation
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: MVT
+Data type: Vector
+Updated: Static; updated with releases
+Resolution / zoom range: z0 to z14 (confirm)
+Price: PAYGO: Vector Tiles API requests
+License terms: Attribution required
+Model training allowed: No
+Useful for: Contours, hillshade, landcover styling; outdoor and aviation maps
+Source: Mapbox terrain compilation (public DEM sources; see mapbox.com/about/maps)
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-terrain-v2/#contour
+
+## Boundaries
+Administrative, postal, statistical, locality and legislative boundaries for analytics, mapping and data enrichment.
+
+### Mapbox Boundaries
+URL: https://hey.mapbox.com/data-catalogV2/#mapbox-boundaries
+Domain: Boundaries
+Status: Available (Commercial (sales-led))
+Description: Global boundary datasets for analytics, mapping, and data enrichment
+How it ships: Flat file
+APIs and interfaces: License gives you access to tilesets or GeoJSON files with raw geometry and metadata
+Format: Vector tiles (MVT); GeoJSONL files
+Docs: https://docs.mapbox.com/data/boundaries/
+Layers inside: Administrative (https://hey.mapbox.com/data-catalogV2/#administrative): Divisions within a country or territory delineated for general administration, usually with a capital and a government that can set laws and collect taxes. Five levels from countries (adm0) to fourth-level areas (adm4), plus boundary lines and label points.; Postal (https://hey.mapbox.com/data-catalogV2/#postal): Approximate mail-delivery areas built from national postal code systems. Three grouping levels (pos1 to pos3) above the full-detail postal code (pos4).; Statistical (https://hey.mapbox.com/data-catalogV2/#statistical): Non-administrative boundaries used mainly for statistics: areas defined by a statistical bureau, or historical boundaries still used for reporting (for example US census units). Five levels from the coarsest reporting region (sta1) to the finest (sta5).; Locality (https://hey.mapbox.com/data-catalogV2/#locality): Places people recognize as a 'place' even when they are not official boundaries: metropolitan areas, cities and towns, districts and neighborhoods.; Legislative (https://hey.mapbox.com/data-catalogV2/#legislative): Constituency areas for legislative assemblies and councils, where voters typically elect one representative per area. Five levels from national upper houses (leg1) to local councils (leg5).
+
+## Search
+The address, place and POI data behind geocoding and search.
+
+### Places POI dataset
+URL: https://hey.mapbox.com/data-catalogV2/#places-poi-dataset
+Domain: Search
+Status: Available (GA)
+Description: Businesses and points of interest with names, categories, brands, addresses, hours and photos, returned by place search and place details.
+How it ships: API
+APIs and interfaces: Search Box API (https://docs.mapbox.com/api/search/search-box/); Places API (https://docs.mapbox.com/api/search/places/)
+Format: JSON
+Data type: Points with attributes
+Updated: Live
+Resolution / zoom range: 4 variants; see each
+Price: PAYGO per request or session
+License terms: API ToS: results may not be cached beyond permitted window; no bulk harvesting
+Model training allowed: No
+Useful for: Place enrichment: hours, photos, activity, entrances
+Source: OSM + Dataplor + TripAdvisor (POIs, open + bought + enriched)
+Docs: https://docs.mapbox.com/api/search/places/
+
+### Address dataset
+URL: https://hey.mapbox.com/data-catalogV2/#address-dataset
+Domain: Search
+Status: Available (GA)
+Description: Street addresses and house numbers worldwide, returned by forward and reverse geocoding with their street, postcode, place, region and country.
+How it ships: API
+APIs and interfaces: Geocoding API (https://docs.mapbox.com/api/search/geocoding/); Search Box API (https://docs.mapbox.com/api/search/search-box/)
+Format: JSON / GeoJSON
+Data type: Points with attributes
+Updated: Live
+Resolution / zoom range: n/a (computed per request)
+Price: PAYGO per request
+License terms: API ToS: results may not be cached beyond permitted window; no bulk harvesting
+Model training allowed: No
+Useful for: Address lookup, reverse geocoding, batch geocoding
+Source: OSM; Remax (US addresses); Lightbox (CA); Loveland (sub-units); ATTOM (US address and neighborhood); AccuZIP (US postal); Loqate fallback and Deyde (SA, EU, ME) for geocoding
+Docs: https://docs.mapbox.com/api/search/geocoding/
+
+### Neighborhoods
+URL: https://hey.mapbox.com/data-catalogV2/#neighborhoods
+Domain: Search
+Status: Available (GA)
+Description: Named neighborhoods and districts, returned as geocoding results and as context on every address result.
+How it ships: API
+APIs and interfaces: Geocoding API (https://docs.mapbox.com/api/search/geocoding/); Search Box API (https://docs.mapbox.com/api/search/search-box/)
+Docs: https://docs.mapbox.com/api/search/geocoding/
+
+### Street Names
+URL: https://hey.mapbox.com/data-catalogV2/#street-names
+Domain: Search
+Status: Available (GA)
+Description: Street names and road segments, returned by geocoding when a query matches a street rather than a full address.
+How it ships: API
+APIs and interfaces: Geocoding API (https://docs.mapbox.com/api/search/geocoding/); Search Box API (https://docs.mapbox.com/api/search/search-box/)
+Docs: https://docs.mapbox.com/api/search/geocoding/
+
+### Postcodes
+URL: https://hey.mapbox.com/data-catalogV2/#postcodes
+Domain: Search
+Status: Available (GA)
+Description: Postal codes with a centroid and the place they belong to, returned by forward and reverse geocoding.
+How it ships: API
+APIs and interfaces: Geocoding API (https://docs.mapbox.com/api/search/geocoding/); Search Box API (https://docs.mapbox.com/api/search/search-box/)
+Docs: https://docs.mapbox.com/api/search/geocoding/
+
+### Countries
+URL: https://hey.mapbox.com/data-catalogV2/#countries-333
+Domain: Search
+Status: Available (GA)
+Description: Countries with names in many languages, ISO codes and a centroid, returned by geocoding and as context on every result.
+How it ships: API
+APIs and interfaces: Geocoding API (https://docs.mapbox.com/api/search/geocoding/); Search Box API (https://docs.mapbox.com/api/search/search-box/)
+Docs: https://docs.mapbox.com/api/search/geocoding/
+
+### Entrance Data
+URL: https://hey.mapbox.com/data-catalogV2/#entrance-data
+Domain: Search
+Status: Available (GA)
+Description: Entrance points for buildings, so a pin or a route ends at the door rather than the building centroid; returned with address results.
+How it ships: API
+APIs and interfaces: Geocoding API (https://docs.mapbox.com/api/search/geocoding/)
+Docs: https://docs.mapbox.com/api/search/geocoding/
+
+## Navigation
+Traffic, speed cameras, incidents, tolls, EV charging, HD lanes and in-dash weather: the data navigation runs on.
+
+### EV charging locations
+URL: https://hey.mapbox.com/data-catalogV2/#ev-charging-locations
+Domain: Navigation
+Status: Available (Commercial (sales-led))
+Description: EV charge points within a specific area with filtering options (such as connector types) to match different charging needs.
+How it ships: API
+APIs and interfaces: EV Charge Finder API (https://docs.mapbox.com/api/navigation/ev-charge-finder/)
+Format: JSON (routes, annotations, incidents)
+Data type: Points with attributes
+Updated: Live
+Resolution / zoom range: n/a (computed per request)
+Price: Contact sales
+License terms: API ToS: results may not be cached beyond permitted window; no bulk harvesting
+Model training allowed: By contract
+Useful for: Charger discovery and connector details
+Source: EV charging network aggregators (confirm providers)
+Docs: https://docs.mapbox.com/api/navigation/ev-charge-finder/
+
+### Toll cost calculation
+URL: https://hey.mapbox.com/data-catalogV2/#toll-cost-calculation
+Domain: Navigation
+Status: Available (GA)
+Description: Total toll cost for a user's route
+How it ships: API
+APIs and interfaces: Directions API (https://docs.mapbox.com/api/navigation/directions/)
+Model training allowed: Unknown
+Useful for: Route comparison, fleet cost, ADAS
+Source: Not a Mapbox asset today; partnership or aggregation candidate
+Docs: https://docs.mapbox.com/api/navigation/directions/
+
+### Traffic Data
+URL: https://hey.mapbox.com/data-catalogV2/#traffic-data
+Domain: Navigation
+Status: Available (Commercial (sales-led))
+Description: Dataset of live and typical road speeds
+How it ships: Flat file
+APIs and interfaces: Annual license gives access to the selected countries
+Format: Delivery schema from Mapbox (confirm: protobuf / CSV / OpenLR); MVT (congestion class per segment)
+Data type: Vector (lines)
+Updated: Live; observations from the last 15 minutes
+Resolution / zoom range: 3 variants; see each
+Price: PAYGO: Vector Tiles API requests
+License terms: Attribution required; display use only
+Model training allowed: No
+Useful for: Live traffic on maps; custom routing engines; traffic analytics and simulation
+Source: Mapbox telemetry (700M+ MAU across 45K apps) + benchmark trips. Coverage template sources: Probe data from BMW and Stellantis plus Mapbox telemetry
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-traffic-v1/
+Layers inside: Live traffic on the map (https://hey.mapbox.com/data-catalogV2/#live-traffic-on-the-map): Real-time traffic conditions for display on a map: constantly updating congestion information on top of Mapbox Streets road geometries.; Live speeds (licensed feed) (https://hey.mapbox.com/data-catalogV2/#live-speeds-licensed-feed): Road-segment traffic feed; Typical speeds (licensed feed) (https://hey.mapbox.com/data-catalogV2/#typical-speeds-licensed-feed): Historical traffic patterns
+
+### In-dash weather
+URL: https://hey.mapbox.com/data-catalogV2/#in-dash-weather
+Domain: Navigation
+Status: Available (GA)
+Description: Weather conditions are available globally, severe weather alerts availabe for some regions
+How it ships: SDK featureset
+APIs and interfaces: Navigation SDK (https://docs.mapbox.com/#navigation)
+Format: Navigation SDK integration
+Data type: Point conditions and alert polygons
+Updated: Live
+Price: Included in Navigation SDK usage; TWC license $300K/yr (LEGL-2388)
+Model training allowed: No
+Useful for: Weather in the driver's view; hazard warnings on the route
+Source: Weather.com (TWC) and Japan Meteorological Support Center
+Docs: https://docs.mapbox.com/android/navigation/guides/
+
+### 3D lane data (Autopilot Map)
+URL: https://hey.mapbox.com/data-catalogV2/#3d-lane-data-autopilot-map
+Domain: Navigation
+Status: Available (Commercial (sales-led))
+Description: Availability of HD data in a given country. High definition resolution and features for road lanes, intersections, etc
+How it ships: API
+APIs and interfaces: Visually via Mapbox Standard Mapstyle.  Bulk data via Autopilot Map API
+Format: Bulk / streaming delivery schema; ADAS SDK
+Data type: Vector (lane geometry) + aggregates
+Updated: Confirm
+Resolution / zoom range: 3 variants; see each
+Price: OEM contract
+License terms: OEM contract
+Model training allowed: By contract
+Useful for: ADAS, L2+ driving
+Source: RSD, Hivemapper, Nexar (in-house HD)
+Docs: https://www.mapbox.com/autopilot-map
+Layers inside: HD physical objects (https://hey.mapbox.com/data-catalogV2/#hd-physical-objects): Road edges, road markings and traffic control devices; HD driving patterns (https://hey.mapbox.com/data-catalogV2/#hd-driving-patterns): Aggregated observed driving behavior; Road topology & lane connectivity (https://hey.mapbox.com/data-catalogV2/#road-topology-lane-connectivity): Road and lane connections for vehicle planning
+
+### Speed cameras
+URL: https://hey.mapbox.com/data-catalogV2/#speed-cameras
+Domain: Navigation
+Status: Available (GA)
+Description: Fixed speed camera locations with a per-country quality rating, used in navigation alerts
+How it ships: SDK featureset
+APIs and interfaces: Nav SDK (https://docs.mapbox.com/#navigation)
+Format: Navigation SDK integration
+Data type: Points
+Updated: Confirm with owner
+Price: Included in Navigation SDK usage
+Model training allowed: No
+Useful for: Driver alerts in Navigation SDK
+Source: Licensed and in-house camera data; per-country star rating in the coverage template
+Docs: https://docs.mapbox.com/android/navigation/guides/
+
+## Indoor
+Venues, floors, floorplans, doors and labels for indoor-mapped buildings.
+
+### Indoor v3
+URL: https://hey.mapbox.com/data-catalogV2/#indoor-v3
+Domain: Indoor
+Status: Available (GA)
+Description: Indoor-mapped venues as vector tiles: structures, floors, floorplans, doors, labels and the metadata that ties them together.
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: MVT
+Data type: Vector
+Source: MapsPeople (bought); Pointr as alternative
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-indoor-v3/
+Layers inside: Indoor structure (https://hey.mapbox.com/data-catalogV2/#indoor-structure): Contains building and structure geometries for indoor-mapped venues.; Indoor floor (https://hey.mapbox.com/data-catalogV2/#indoor-floor): Contains floor geometries within structures; Indoor floorplan (https://hey.mapbox.com/data-catalogV2/#indoor-floorplan): Contains detailed floorplan elements such as rooms, amenities, corridors, and points of interest within a floor.; Indoor door (https://hey.mapbox.com/data-catalogV2/#indoor-door): Contains door features within indoor venues, including standard doors, external doors, elevator doors, and openings.; Indoor label (https://hey.mapbox.com/data-catalogV2/#indoor-label): Contains label points for various indoor features including buildings, floors, rooms, amenities, gates, and points of interest; Indoor facility metadata (https://hey.mapbox.com/data-catalogV2/#indoor-facility-metadata): Contains metadata about indoor facilities (venues). Each feature represents a facility and provides identifying information.; Indoor structure metadata (https://hey.mapbox.com/data-catalogV2/#indoor-structure-metadata): Contains metadata about structures (buildings) within indoor-mapped venues.; Indoor floor metadata (https://hey.mapbox.com/data-catalogV2/#indoor-floor-metadata): Contains metadata about floors within structures.
+
+## Transit
+Rail and metro routes.
+
+### Transit v2 (Japan)
+URL: https://hey.mapbox.com/data-catalogV2/#transit-v2-japan
+Domain: Transit
+Status: Available (GA)
+Description: Contains metro and other train routes of a geography, with information specific to creating a transit map style
+How it ships: Vector tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Vector Tiles API (https://docs.mapbox.com/api/maps/vector-tiles/)
+Format: MVT
+Data type: Vector
+Docs: https://docs.mapbox.com/data/tilesets/reference/mapbox-transit-v2/
+
+## Weather
+Weather and environmental layers.
+
+### Japan Weather Layers
+URL: https://hey.mapbox.com/data-catalogV2/#japan-weather-layers
+Domain: Weather
+Status: Available (GA)
+Description: Tilesets that provide weather and environmental data for Japan and have separate pricing from other Mapbox tilesets
+How it ships: Raster array tiles
+APIs and interfaces: SDK; Tilequery API (https://docs.mapbox.com/api/maps/tilequery/); Static Images API (https://docs.mapbox.com/api/maps/static-images/); Rasterarray Tiles API (https://docs.mapbox.com/api/maps/raster-arrays/)
+Format: Raster array (bands)
+Data type: Raster array
+Updated: Updated at regular intervals (JWL guide)
+Resolution / zoom range: 13 layers; see each layer for horizon
+Price: Billing in progress (JWL needed ~4 weeks billing lead time, per 10/9 Slack)
+Useful for: Weather overlays and risk alerts in Japanese consumer and automotive apps
+Source: Weather.com (TWC) and Japan Meteorological Support Center
+Docs: https://docs.mapbox.com/data/tilesets/reference/japan-weather-layers/weather-jp-nowcast/
+Layers inside: Precipitation nowcast (now + 60 min) (https://hey.mapbox.com/data-catalogV2/#precipitation-nowcast-now-60-min): Precipitation, present + 60 min forecast; Precipitation, previous 60 min (https://hey.mapbox.com/data-catalogV2/#precipitation-previous-60-min): Precipitation, previous 60 min; Precipitation forecast, 1 to 6 h (https://hey.mapbox.com/data-catalogV2/#precipitation-forecast-1-to-6-h): Precipitation, 6 hour forecast; Precipitation forecast, 7 to 15 h (https://hey.mapbox.com/data-catalogV2/#precipitation-forecast-7-to-15-h): Precipitation, 7 to 15 hour forecast; Temperature, now + 39 h (https://hey.mapbox.com/data-catalogV2/#temperature-now-39-h): Temperature, present + 39 h; Temperature, 40 to 78 h (https://hey.mapbox.com/data-catalogV2/#temperature-40-to-78-h): Temperature, 40 to 78 h; Wind, now + 39 h (https://hey.mapbox.com/data-catalogV2/#wind-now-39-h): Wind, present + 39 h; Wind, 40 to 78 h (https://hey.mapbox.com/data-catalogV2/#wind-40-to-78-h): Wind, 40 to 78 h; Snow depth forecast, 6 h (https://hey.mapbox.com/data-catalogV2/#snow-depth-forecast-6-h): Snow depth, 6 hour forecast; Snow depth, previous 6 h (https://hey.mapbox.com/data-catalogV2/#snow-depth-previous-6-h): Snow depth, previous 6 h; Flood damage risk (https://hey.mapbox.com/data-catalogV2/#flood-damage-risk): Flood damage risk; Landslide risk (https://hey.mapbox.com/data-catalogV2/#landslide-risk): Landslide risk; River flood risk (https://hey.mapbox.com/data-catalogV2/#river-flood-risk): River flood risk (vector)
+
+## Movement
+Aggregated telemetry: how much people move, where and when.
+
+### Movement
+URL: https://hey.mapbox.com/data-catalogV2/#movement-56
+Domain: Movement
+Status: Available (Commercial (sales-led))
+Description: Movement index with total, driving and non-driving telemetry, gives the customer the ability to analyse trends and compare different regions
+How it ships: Flat file
+APIs and interfaces: Annual license gives access to the selected countries
+Format: CSV
+Data type: Tabular (activity index)
+Updated: Daily and monthly; delivered ~2 weeks after contract
+Resolution / zoom range: 100 m tiles (z18) and select Boundaries
+Price: Enterprise license; contact sales; sample data for evaluation
+License terms: No individual trajectories; contract terms on derivatives
+Model training allowed: By contract
+Useful for: Footfall, site selection, mobility analytics; candidate AI context layer
+Source: De-identified, aggregated mobile device activity from Mapbox telemetry. Coverage template sources: Mapbox telemetry (in-house)
+Docs: https://www.mapbox.com/movement-data
+Layers inside: Monthly activity (https://hey.mapbox.com/data-catalogV2/#monthly-activity): Aggregated device activity by area and time
